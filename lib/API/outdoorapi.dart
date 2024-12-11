@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../APIMODELS/landmark.dart';
 import '../APIMODELS/outdoormodel.dart';
+import '../SharedPreferenceHelper.dart';
 import 'guestloginapi.dart';
 
 
@@ -9,6 +10,8 @@ class outBuilding {
   static const String baseUrl = "https://dev.iwayplus.in/secured/outdoor";
 
   static Future<outdoormodel?> outbuilding(List<String> ids) async {
+    SharedPreferenceHelper prefs = await SharedPreferenceHelper.getInstance();
+
     final Map<String, dynamic> data = {
       "buildingIds": ids
     };
@@ -17,9 +20,7 @@ class outBuilding {
       body: json.encode(data),
       headers: {
         'Content-Type': 'application/json',
-        'x-access-token': await guestApi.guestlogin().then((value){
-          return value.accessToken!;
-        })
+        'x-access-token': await prefs.getMap("signin")!["accessToken"]
       },
     );
     if (response.statusCode == 200) {

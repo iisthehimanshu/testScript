@@ -14,6 +14,7 @@ import 'API/outdoorapi.dart';
 import 'APIMODELS/Building.dart';
 import 'APIMODELS/landmark.dart';
 import 'APIMODELS/waypoint.dart';
+import 'SignIn.dart';
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: MyHomePage(title: 'Test Script'),
+      home: SignIn(),
     );
   }
 }

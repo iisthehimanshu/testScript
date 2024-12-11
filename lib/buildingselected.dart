@@ -198,6 +198,9 @@ class _buildingselectedState extends State<buildingselected> {
     int totalLandmarks = 0;
     Map<int,int> totalcorrectLandmarks = {};
     landmarkdata!.landmarks!.forEach((Element){
+      if(floorDimenssion[Element.floor] == null){
+        print(Element.name);
+      }
       totalLandmarks++;
       if((Element.element!.subType != "Floor")){
         if(Element.coordinateX == null || Element.coordinateY == null){
